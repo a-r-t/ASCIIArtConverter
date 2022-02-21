@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>ASCII Art Converter</title>
+  </head>
+  <body>
+    <div>
+      Input: Paste ASCII Art here.
+      <br>
+      <textarea id="input" rows="4" cols="50" oninput="inputChanged(this.value)" style="white-space: pre-wrap;"></textarea>
+    </div>
+    <div style="margin-top:20px;">
+      Output: Place this in your println.
+      <br>
+      System.out.println(<input id="output" type="text" size="50">)
+    </div>
+  </body>
+
+  <script lang="js">
+    const inputChanged = text => {
+      const outputTextBox = document.getElementById("output")
+      outputTextBox.value = `"${text
+        .replace(/\\/g, '\\\\')
+        .replace(/\u0008/g, '\\b')
+        .replace(/\t/g, '\\t')
+        .replace(/\f/g, '\\f')
+        .replace(/\r/g, '\\r')
+        .replace(/'/g, '\\\'')
+        .replace(/"/g, '\\"')
+        .replace(/\n/g, '\\n')}"`
+    }
+  </script>
+</html>
